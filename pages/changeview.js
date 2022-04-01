@@ -1,6 +1,4 @@
 export const changeview =
-"<main>\
-<div>\
+"<div>\
 changeview\
-</div>\
-</main>"
+</div>"

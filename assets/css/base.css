@@ -1,0 +1,70 @@
+/* Global */
+:root{
+  --red:rgb(238, 46, 49);
+  --light-blue:rgb(230, 250, 252);
+  --cyan:rgb(51, 101, 138);
+	--black:rgb(28, 17, 10);
+}
+
+html{
+  font-size: 16px;
+}
+
+body{
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+
+header{
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: 5rem;
+  background: var(--cyan);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem;
+}
+
+nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 30%;
+  color: var(--light-blue);
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  width: 100%;
+  height:calc(100vh - 10rem);
+}
+
+#home-icon{
+  width: 2rem;
+  fill: var(--black);
+}
+
+.hover{
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+}
+
+.hover:hover{
+  opacity: .5;
+  transform: translateY(.25rem);
+}

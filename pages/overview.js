@@ -1,6 +1,4 @@
 export const overview =
-"<main>\
-<div>\
+"<div>\
 overview\
-</div>\
-</main>"
+</div>"

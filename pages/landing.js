@@ -1,6 +1,4 @@
 export const landing = 
-"<main>\
-<div>\
+"<div>\
 landing\
-</div>\
-</main>"
+</div>"
