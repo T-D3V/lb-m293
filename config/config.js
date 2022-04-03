@@ -25,10 +25,7 @@ export const config = {
       'path': '/',
       'body': `${header}${landing}${footer}`,
       'css': ['landing'],
-      'js': [{
-        src: 'base',
-        type: 'application/javascript',
-      }],
+      'js': [],
       'permissions': 0
     },
     {
