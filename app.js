@@ -30,6 +30,17 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 })
 
+document.addEventListener('loaded', function() {eventMobileNav()})
+
+function eventMobileNav(){
+  document.removeEventListener('loaded', eventMobileNav)
+  let icon = document.querySelector('.icon')
+  icon.addEventListener('click', function() {
+    mobileNav()
+  })
+}
+
+
 function mobileNav() {
   let nav = document.querySelector("nav");
   if(window.outerWidth <= 675){
