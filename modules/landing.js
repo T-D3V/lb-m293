@@ -1,7 +1,7 @@
 export const landing = "\
 <main>\
   <section id='main'>\
-    <h1>Welcome to the BBB Timetable</h1>\
+    <h1>Welcome to the BBB&nbsp;Timetable</h1>\
     <h2>School Project</h2>\
   </section>\
   <section id='description'>\

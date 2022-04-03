@@ -4,7 +4,7 @@
 	--black:rgb(28, 17, 10);
 }
 
-svg {
+main svg {
   height: 1rem;
   fill: var(--light-blue);
 }
