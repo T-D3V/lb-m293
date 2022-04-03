@@ -1,0 +1,37 @@
+:root{
+  --light-blue:rgb(230, 250, 252);
+  --cyan:rgb(51, 101, 138);
+	--black:rgb(28, 17, 10);
+}
+
+html {
+  height: 100%!important;
+}
+
+body {
+  background: var(--black)!important;
+  display: flex!important;
+  flex-direction: column!important;
+  justify-content: center!important;
+  align-items: center!important;
+  height: 100%!important;
+}
+
+h1{
+  color:var(--light-blue)!important;
+  -webkit-text-stroke: unset!important;
+}
+
+.loader {
+  border: 16px solid var(--light-blue);
+  border-top: 16px solid var(--cyan);
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

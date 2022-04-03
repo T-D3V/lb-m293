@@ -4,16 +4,32 @@ export class Router {
     this._loadInitialRoute()
   }
 
-  loadRoute(...UrlSegments){
-    document.body.style.display = 'none'
+  sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async loadRoute(...UrlSegments){
+    var loadingstyle = document.createElement("LINK")
+    loadingstyle.rel = "stylesheet"
+    loadingstyle.href = './assets/css/' + this.config.loading.css + '.css'
+    loadingstyle.type = "text/css"
+    loadingstyle.dataset.include = 'loading'
+
+    document.body.innerHTML = this.config.loading.body
+    
+    document.head.appendChild(loadingstyle)
+
+    document.title = `Loading ... | BBB TimeTable`
+
     const matchedRoute = this._matchUrlRoute(UrlSegments)
 
     const url = `/${UrlSegments.join('/')}`
     if(window.location.pathname !== url){
       history.pushState({}, '', url)
     }
-    
-    document.title = `BBB TimeTable | ${matchedRoute.title}`
+
+    let body = document.createElement('body')
+    body.innerHTML =  matchedRoute.body
 
     let scripts = document.head.querySelectorAll('script[data-include="route"]')
     let links = document.head.querySelectorAll('link[rel="stylesheet"][data-include="route"]')
@@ -30,6 +46,7 @@ export class Router {
       var link = document.createElement("LINK")
       link.rel = "stylesheet"
       link.href = './assets/css/' + element + '.css'
+      link.type = "text/css"
       link.dataset.include = 'route'
       document.head.appendChild(link)
     })
@@ -42,19 +59,22 @@ export class Router {
       document.head.appendChild(script)
     })
 
-    let nav = document.querySelector('nav')
+    let nav = body.querySelector('nav')
+    let navicon = body.querySelector('#nav-icon')
     nav.innerHTML = ''
     let i = 0
-    if(window.sessionStorage.getItem('permissons')){
+    if(window.sessionStorage.getItem('permissions')){
       this.config.routes.forEach(route => {
         if(route.path !== '/404'){
-          if(window.sessionStorage.getItem('permissons') >= route.permissions){
-            if(route.path !== '/login'){
+          if(window.sessionStorage.getItem('permissions') >= route.permissions){
+            if(route.path !== '/login' && route.path !== '/detail' && route.path !== '/imprint'){
               i++
               let navbutton = document.createElement('a')
               navbutton.innerText = route.title
               navbutton.classList.add('nav-button', 'hover')
               navbutton.dataset.to = route.path.split('/').slice(1)
+              navbutton.tabIndex = i
+              navbutton.href = '#'
               navbutton.addEventListener('click', () => {
                 this.loadRoute(navbutton.dataset.to)
               })
@@ -66,6 +86,8 @@ export class Router {
       let navbutton = document.createElement('a')
       navbutton.innerText = 'Logout'
       navbutton.classList.add('nav-button', 'hover')
+      navbutton.tabIndex = i
+      navbutton.href = '#'
       navbutton.addEventListener('click', () => {
         window.sessionStorage.clear()
         this.loadRoute('')
@@ -74,13 +96,15 @@ export class Router {
       nav.appendChild(navbutton)
     }else{
       this.config.routes.forEach(route => {
-        if(route.path !== '/404'){
+        if(route.path !== '/404' && route.path !== '/imprint'){
           if(0 >= route.permissions){
             i++
             let navbutton = document.createElement('a')
             navbutton.innerText = route.title
             navbutton.classList.add('nav-button', 'hover')
             navbutton.dataset.to = route.path.split('/').slice(1)
+            navbutton.tabIndex = i
+            navbutton.href = '#'
             navbutton.addEventListener('click', () => {
               this.loadRoute(navbutton.dataset.to)
             })
@@ -90,11 +114,24 @@ export class Router {
       })
     }
 
-    nav.style.width = i*10+'%'
-    let main = document.querySelector('main')
+    let imprintlink = body.querySelector('#linkimprint')
+    imprintlink.addEventListener('click', () => {
+      this.loadRoute(imprintlink.dataset.to)
+    })
 
-    main.innerHTML = matchedRoute.body
-    document.body.style.removeProperty('display')
+
+    navicon.addEventListener('click', () => {
+      this.loadRoute(navicon.dataset.to)
+    })
+
+    nav.style.width = i*10+'%'
+    await this.sleep(1000);
+    loadingstyle.remove()
+    document.title = `${matchedRoute.title} | BBB TimeTable`
+    document.body = body
+
+    let loaded = new Event('loaded')
+    document.dispatchEvent(loaded)
   }
 
   _matchUrlRoute(UrlSegments){

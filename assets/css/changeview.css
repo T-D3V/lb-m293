@@ -1,0 +1,42 @@
+:root{
+  --light-blue:rgb(230, 250, 252);
+  --cyan:rgb(51, 101, 138);
+	--black:rgb(28, 17, 10);
+}
+
+
+#main{
+  background-color: var(--black)
+}
+
+#change-form{
+  height: 100%;
+  width: 100%;
+  background-color: var(--cyan);
+  border-radius: 30px;
+  padding: 1rem;
+}
+
+label {
+  color: var(--light-blue)
+}
+
+input{
+  background-color: transparent;
+  border: 2px solid var(--black);
+  transition: all .2s ease-in-out;
+  color: var(--light-blue)
+}
+
+input:focus{
+  background-color: var(--black);
+}
+
+h1>svg{
+  height: 1.5rem;
+}
+
+select{
+  background:transparent;
+  border: 2px solid var(--black);
+}

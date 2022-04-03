@@ -1,0 +1,115 @@
+:root{
+  --light-blue:rgb(230, 250, 252);
+  --cyan:rgb(51, 101, 138);
+	--black:rgb(28, 17, 10);
+}
+
+svg {
+  height: 1rem;
+  fill: var(--light-blue);
+}
+
+#overview-add{
+  margin-left: auto;
+}
+
+#date-overview{
+  color: var(--light-blue);
+}
+
+#main{
+  gap: 0px;
+}
+
+.top-panel{
+  height:5rem;
+  width: 100%;
+  position:sticky;
+  top:5rem;
+  padding: 1rem;
+  background-color: var(--black);
+  z-index: 100;
+}
+
+.main-overview{
+  width: 100%;
+  min-height: calc(100vh - (15rem));
+  background-color: var(--light-blue);
+}
+
+.timespan{
+  min-height: calc(100vh - (15rem));
+  flex: 1;
+  justify-content: space-evenly;
+}
+
+.timespan p {
+  margin: 0;
+}
+
+.columns{
+  min-height: calc(100vh - (15rem));
+}
+
+.time-col{
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  justify-content: space-evenly;
+  color: var(--black)!important;
+}
+
+.time-col svg{
+  fill: var(--black)!important;
+}
+
+.time-col p{
+  margin: 0;
+}
+
+#ov1{
+  color: green!important;
+}
+
+#ov2{
+  color: blue!important;
+}
+
+#ov3{
+  color: coral!important;
+}
+
+#ov1 a{
+  color: green!important;
+}
+
+#ov2 a{
+  color: blue!important;
+}
+
+#ov3 a{
+  color: coral!important;
+}
+
+.prompt{
+  display: none;
+}
+
+@media screen and (max-width:750px) {
+  #ov3{
+    display: none;
+  }
+
+  #ov1{
+    display: none;
+  }
+
+  .prompt{
+    display: unset;
+    width: 100%;
+  }
+
+  .columns{
+    flex-direction: column;
+  }
+}

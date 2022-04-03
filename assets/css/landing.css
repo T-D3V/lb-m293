@@ -1,0 +1,25 @@
+:root{
+  --light-blue:rgb(230, 250, 252);
+  --cyan:rgb(51, 101, 138);
+	--black:rgb(28, 17, 10);
+}
+
+h1 {
+  -webkit-text-stroke: 1px var(--light-blue);
+}
+
+h2 {
+  -webkit-text-stroke: 1px var(--light-blue);
+}
+
+p {
+  color: var(--light-blue);
+}
+
+#main {
+  background-image: url(./../images/bg-landing.jpg);
+}
+
+#description {
+  background-color: var(--black);
+}

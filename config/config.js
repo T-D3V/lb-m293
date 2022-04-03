@@ -1,9 +1,12 @@
-import {landing} from '../pages/landing.js'
-import {login} from '../pages/login.js'
-import {overview} from '../pages/overview.js'
-import {detail} from '../pages/detail.js'
-import {changeview} from '../pages/changeview.js'
-import {error404} from '../pages/errors.js'
+import {header, footer} from '../modules/header_footer.js'
+import {landing} from '../modules/landing.js'
+import {login} from '../modules/login.js'
+import {overview} from '../modules/overview.js'
+import {detail} from '../modules/detail.js'
+import {changeview} from '../modules/changeview.js'
+import {error404} from '../modules/errors.js'
+import {loading } from '../modules/loading.js'
+import { imprint } from '../modules/imprint.js'
 
 //Files need to be in assets css or js
 
@@ -12,35 +15,45 @@ export const config = {
     'css': ['base','sanitize'],
     'js': []
   },
+  'loading': {
+    'body': `${loading}`,
+    'css': ['loading']
+  },
   'routes': [
     {
       'title': 'Home',
       'path': '/',
-      'body': `${landing}`,
-      'css': [],
+      'body': `${header}${landing}${footer}`,
+      'css': ['landing'],
       'js': [],
       'permissions': 0
     },
     {
       'title': 'Login',
       'path': '/login',
-      'body': `${login}`,
+      'body': `${header}${login}${footer}`,
       'css': ['login'],
-      'js': [],
+      'js': [{
+        src: 'login',
+        type: 'application/javascript',
+      }],
       'permissions': 0
     },
     {
       'title': 'Overview',
       'path': '/overview',
-      'body': `${overview}`,
+      'body': `${header}${overview}${footer}`,
       'css': ['overview'],
-      'js': [],
+      'js': [{
+        src: 'overview',
+        type: 'application/javascript',
+      }],
       'permissions': 1
     },
     {
       'title': 'Detail',
       'path': '/detail',
-      'body': `${detail}`,
+      'body': `${header}${detail}${footer}`,
       'css': ['detail'],
       'js': [],
       'permissions': 1
@@ -48,7 +61,7 @@ export const config = {
     {
       'title': 'Change View',
       'path': '/changeview',
-      'body': `${changeview}`,
+      'body': `${header}${changeview}${footer}`,
       'css': ['changeview'],
       'js': [],
       'permissions': 1
@@ -56,8 +69,16 @@ export const config = {
     {
       'title': 'Not Found',
       'path': '/404',
-      'body': `${error404}`,
+      'body': `${header}${error404}${footer}`,
       'css': ['error'],
+      'js': [],
+      'permissions': 0
+    },
+    {
+      'title': 'Imprint',
+      'path': '/imprint',
+      'body': `${header}${imprint}${footer}`,
+      'css': ['imprint'],
       'js': [],
       'permissions': 0
     }
